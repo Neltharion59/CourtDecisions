@@ -45,17 +45,19 @@ driver.get("https://obcan.justice.sk/infosud/-/infosud/zoznam/rozhodnutie")
 page_counter = 1
 file_counter = 0
 total_file_size = 0
+no_break_counter = 0
 
 while True:
     sleep(5)
     element_file_list_container = driver.find_element_by_id("_isufront_WAR_isufront_mapsSearchContainer")
     element_link_list = element_file_list_container.find_elements_by_tag_name("a")
 
-    if random() < 0.03:
+    if (random() < 0.03 and no_break_counter > 30) or no_break_counter > 100:
         break_time = randint(300, 600)
         log_activity(current_datetime() + " Taking a human-like break for %d seconds\n" % break_time)
         sleep(break_time)
         log_activity(current_datetime() + " Back to work\n")
+        no_break_counter = 0
 
     for element in element_link_list:
         sleep(randint(5, 12))
@@ -66,17 +68,19 @@ while True:
         element_download_button = driver.find_element_by_class_name("documentDownload")
 
         req = requests.get(element_download_button.get_attribute("href"), allow_redirects=True)
-        file_counter += 1
-        open("D:/Rozsudky/" + str(file_counter) + ".pdf", 'wb').write(req.content)
-        total_file_size += len(req.content)
+        if req is not None or len(req) > 0:
+            file_counter += 1
+            no_break_counter += 0
+            open("D:/Rozsudky/" + str(file_counter) + ".pdf", 'wb').write(req.content)
+            total_file_size += len(req.content)
 
-        element_filename_container = driver.find_element_by_class_name("documentList")
-        element_filename_label = element_filename_container.find_element_by_tag_name("h4")
-        file_name = element_filename_label.text
-        with open("./Crawler/file_ids.txt", "a") as file_object:
-            file_object.write(str(file_counter) + " " + file_name + "\n")
+            element_filename_container = driver.find_element_by_class_name("documentList")
+            element_filename_label = element_filename_container.find_element_by_tag_name("h4")
+            file_name = element_filename_label.text
+            with open("./Crawler/file_ids.txt", "a") as file_object:
+                file_object.write(str(file_counter) + " " + file_name + "\n")
 
-        log_activity(current_datetime + "\nFile count: " + str(file_counter) + "\nTotal size " + readable_size(total_file_size))
+            log_activity(current_datetime() + "\nFile count: " + str(file_counter) + "\nTotal size " + readable_size(total_file_size))
 
         sleep(randint(22, 51))
         driver.close()
