@@ -110,7 +110,7 @@ while True:
             break
 
         req = requests.get(element_download_button.get_attribute("href"), allow_redirects=True)
-        if req is not None and len(req) > 0:
+        if req is not None and len(req.content) > 0:
             file_counter += 1
             no_break_counter += 1
             open("D:/Rozsudky/" + str(file_counter) + ".pdf", 'wb').write(req.content)
