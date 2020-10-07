@@ -9,7 +9,7 @@ from datetime import datetime
 import requests
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.common.exceptions import NoSuchElementException
-from math import ceil
+from math import floor
 
 # https://stackoverflow.com/questions/1094841/reusable-library-to-get-human-readable-version-of-file-size
 from selenium.webdriver.support.wait import WebDriverWait
@@ -64,11 +64,10 @@ first_file_name = None
 skip_count = 0
 need_to_skip = False
 
-with open(file_path_head) as curr_file:
+with open(file_path_head, encoding="UTF-8") as curr_file:
     head_file = curr_file.readline()
 with open(file_path_count) as curr_file:
     existing_file_count = int(curr_file.readline())
-
 
 while True:
     sleep(5)
@@ -80,9 +79,10 @@ while True:
         element_link_list = element_link_list[skip_count:]
         need_to_skip = False
         skip_count = 0
-        with open(file_path_head, "w+") as fp:
-            fp.write(first_file_name)
-        first_file_name = None
+        if first_file_name is not None:
+            with open(file_path_head, "w+", encoding="UTF-8") as fp:
+                fp.write(first_file_name)
+            first_file_name = None
 
     if (random() < 0.03 and no_break_counter > 50) or no_break_counter > 200:
         break_time = randint(300, 600)
@@ -113,7 +113,7 @@ while True:
         if req is not None and len(req.content) > 0:
             file_counter += 1
             no_break_counter += 1
-            open("D:/Rozsudky/" + str(file_counter) + ".pdf", 'wb').write(req.content)
+            open("D:/Rozsudky/" + str(file_counter + existing_file_count) + ".pdf", 'wb').write(req.content)
             file_size = len(req.content)
             total_file_size += file_size
 
@@ -127,26 +127,29 @@ while True:
                 total_file_size -= file_size
                 need_to_skip = True
                 log_activity(current_datetime() + "\nNeed to skip %d files\n" % existing_file_count)
-                break
 
-            with open("./Crawler/file_ids.txt", "a") as file_object:
-                file_object.write(str(file_counter) + " " + file_name + "\n")
-            if first_file_name is None:
-                first_file_name = file_name
+            if not need_to_skip:
+                with open("./Crawler/file_ids.txt", "a") as file_object:
+                    file_object.write(str(file_counter + existing_file_count) + " " + file_name + "\n")
+                if first_file_name is None:
+                    first_file_name = file_name
 
-            log_activity(current_datetime() + "\nFile count: " + str(file_counter) + "\nTotal size " + readable_size(total_file_size))
-            with open(file_path_count, "w+") as fp:
-                fp.write(str(existing_file_count + file_counter))
+                log_activity(current_datetime() + "\nFile count: " + str(file_counter) + "\nTotal size " + readable_size(total_file_size))
+                with open(file_path_count, "w+") as fp:
+                    fp.write(str(existing_file_count + file_counter))
 
         sleep(randint(15, 30))
         driver.close()
         driver.switch_to.window(driver.window_handles[0])
 
+        if need_to_skip:
+            break
+
     if need_to_skip:
-        page_counter = page_counter + int(ceil(existing_file_count/float(pagination))) - 1
+        page_counter = page_counter + int(floor(existing_file_count/float(pagination))) - 1
         skip_count = existing_file_count % pagination
-        continue
+    else:
+        page_counter = page_counter + 1
 
     sleep(randint(7, 20))
-    page_counter = page_counter + 1
     driver.get(pager_link + str(page_counter))
