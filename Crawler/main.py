@@ -49,8 +49,6 @@ profile.set_preference("browser.download.dir", "D:/Rozsudky")
 profile.set_preference("browser.helperapps.neverAsk.saveToDisk", "application/octet-stream,application/pdf")
 driver = webdriver.Firefox(firefox_profile=profile)
 
-driver.get("https://obcan.justice.sk/infosud/-/infosud/zoznam/rozhodnutie")
-
 page_counter = 1
 file_counter = 0
 total_file_size = 0
@@ -69,8 +67,10 @@ with open(file_path_head, encoding="UTF-8") as curr_file:
 with open(file_path_count) as curr_file:
     existing_file_count = int(curr_file.readline())
 
+driver.get("https://obcan.justice.sk/infosud/-/infosud/zoznam/rozhodnutie")
+
 while True:
-    sleep(5)
+    sleep(15)
 
     element_file_list_container = driver.find_element_by_id("_isufront_WAR_isufront_mapsSearchContainer")
     element_link_list = element_file_list_container.find_elements_by_tag_name("a")
