@@ -1,5 +1,6 @@
 Crawler/geckodriver.log
 Crawler/file_ids.txt
+Crawler/file_ids_temp.txt
 Crawler/count.txt
 Crawler/head.txt
 Crawler/Log/*

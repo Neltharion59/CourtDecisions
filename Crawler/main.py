@@ -129,7 +129,7 @@ while True:
                 log_activity(current_datetime() + "\nNeed to skip %d files\n" % existing_file_count)
 
             if not need_to_skip:
-                with open("./Crawler/file_ids.txt", "a") as file_object:
+                with open("./Crawler/file_ids.txt", "a", encoding='UTF-8') as file_object:
                     file_object.write(str(file_counter + existing_file_count) + " " + file_name + "\n")
                 if first_file_name is None:
                     first_file_name = file_name
