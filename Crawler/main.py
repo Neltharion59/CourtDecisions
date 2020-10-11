@@ -10,7 +10,6 @@ import requests
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.common.exceptions import NoSuchElementException
 from os.path import exists
-from math import floor
 
 # https://stackoverflow.com/questions/1094841/reusable-library-to-get-human-readable-version-of-file-size
 from selenium.webdriver.support.wait import WebDriverWait
@@ -54,8 +53,6 @@ file_counter = 0
 total_file_size = 0
 no_break_counter = 0
 
-existing_file_count = 0
-
 existing_file_links = []
 if exists(file_path_ids):
     with open(file_path_ids, "r", encoding='UTF-8') as file_object:
@@ -63,6 +60,8 @@ if exists(file_path_ids):
             link = line.replace('\n', '').split(' ')[2]
             existing_file_links.append(link)
             print(link)
+
+existing_file_count = len(existing_file_links)
 
 log_activity(current_datetime() + "\nStarting crawling session")
 
