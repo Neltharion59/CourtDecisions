@@ -34,13 +34,13 @@ start_datetime = current_datetime()
 
 def log_activity(message):
     print(message)
-    log_file_object = open("./Crawler/Log/activity_log_" + start_datetime + ".txt", "a+")
+    log_file_object = open("./Log/activity_log_" + start_datetime + ".txt", "w+")
     log_file_object.write(message)
     log_file_object.close()
 
 
 pager_link = "https://obcan.justice.sk/infosud?p_p_id=isufront_WAR_isufront&p_p_col_id=column-1&p_p_col_count=1&p_p_mode=view&_isufront_WAR_isufront_view=list&p_p_state=normal&_isufront_WAR_isufront_entityType=rozhodnutie&_isufront_WAR_isufront_cur="
-file_path_ids = "./Crawler/file_ids.txt"
+file_path_ids = "./file_ids.txt"
 
 profile = webdriver.FirefoxProfile()
 profile.set_preference("browser.download.folderList", 2)
@@ -64,7 +64,11 @@ if exists(file_path_ids):
             existing_file_links.append(link)
             print(link)
 
+log_activity(current_datetime() + "\nStarting crawling session")
+
 driver.get("https://obcan.justice.sk/infosud/-/infosud/zoznam/rozhodnutie")
+input()
+print('Proceeding to crawling')
 
 while True:
     sleep(15)
@@ -85,13 +89,11 @@ while True:
             existing_file_links.remove(element_url)
             continue
 
-        sleep(randint(5, 12))
+        sleep(5)
 
         driver.execute_script("arguments[0].scrollIntoView();", element)
         ActionChains(driver).key_down(Keys.CONTROL).click(element).key_up(Keys.CONTROL).perform()
         driver.switch_to.window(driver.window_handles[1])
-
-        sleep(randint(5, 12))
 
         element_download_button = None
         try:
@@ -116,12 +118,12 @@ while True:
             element_filename_label = element_filename_container.find_element_by_tag_name("h4")
             file_name = element_filename_label.text
 
-            with open("./Crawler/file_ids.txt", "a", encoding='UTF-8') as file_object:
+            with open("./file_ids.txt", "a", encoding='UTF-8') as file_object:
                 file_object.write(str(file_counter + existing_file_count) + " " + file_name + " " + element_url + "\n")
 
                 log_activity(current_datetime() + "\nFile count: " + str(file_counter) + "\nTotal size " + readable_size(total_file_size))
 
-        sleep(randint(15, 30))
+        sleep(randint(5, 10))
         driver.close()
         driver.switch_to.window(driver.window_handles[0])
 

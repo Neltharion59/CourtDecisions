@@ -1,7 +1,7 @@
 from os import listdir, remove
 from os.path import isfile, join
 
-perform_remedy = True
+perform_remedy = False
 file_directory = "D:/Rozsudky"
 
 filename_dict = {}
