@@ -63,7 +63,8 @@ if exists(file_path_ids):
 
 existing_file_count = len(existing_file_links)
 
-log_activity(current_datetime() + "\nStarting crawling session")
+log_activity(current_datetime() + "\nHas {0} files\n".format(existing_file_count))
+log_activity(current_datetime() + "\nStarting crawling session\n")
 
 driver.get("https://obcan.justice.sk/infosud/-/infosud/zoznam/rozhodnutie")
 input()
@@ -127,4 +128,5 @@ while True:
         driver.switch_to.window(driver.window_handles[0])
 
     page_counter = page_counter + 1
+    log_activity(current_datetime() + "\nGoing to page {0}\n".format(page_counter))
     driver.get(pager_link + str(page_counter))

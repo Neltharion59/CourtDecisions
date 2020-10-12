@@ -7,21 +7,26 @@ file_directory = "D:/Rozsudky"
 filename_dict = {}
 with open("./file_ids.txt", "r", encoding='UTF-8') as file_object:
     for line in file_object:
-        filename = line.split(' ')[1].replace('\n', '')
-        if filename not in filename_dict:
-            filename_dict[filename] = {
+        file_url = line.split(' ')[2].replace('\n', '')
+        if file_url not in filename_dict:
+            filename_dict[file_url] = {
                 'ids': [],
                 'count': 0
             }
-        filename_dict[filename]['count']  = filename_dict[filename]['count'] + 1
-        filename_dict[filename]['ids'].append(line.split(' ')[0])
+        filename_dict[file_url]['count'] = filename_dict[file_url]['count'] + 1
+        filename_dict[file_url]['ids'].append(line.split(' ')[0])
 
 ids_to_delete = []
+duplicity_pairs = []
 for key in filename_dict:
     if filename_dict[key]['count'] > 1:
         ids_to_delete = ids_to_delete + filename_dict[key]['ids'][1:]
+        duplicity_pairs.append(filename_dict[key]['ids'])
+
+ids_to_delete = sorted((int(x) for x in ids_to_delete))
 
 print(ids_to_delete)
+print(duplicity_pairs)
 
 if not perform_remedy:
     exit()
