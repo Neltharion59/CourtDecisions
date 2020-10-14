@@ -8,7 +8,7 @@ from random import random
 from datetime import datetime
 import requests
 from selenium.webdriver.support import expected_conditions as ec
-from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import NoSuchElementException, TimeoutException
 from os.path import exists
 
 # https://stackoverflow.com/questions/1094841/reusable-library-to-get-human-readable-version-of-file-size
@@ -38,7 +38,7 @@ def log_activity(message):
     log_file_object.close()
 
 
-pager_link = "https://obcan.justice.sk/infosud?p_p_id=isufront_WAR_isufront&p_p_col_id=column-1&p_p_col_count=1&p_p_mode=view&_isufront_WAR_isufront_view=list&p_p_state=normal&_isufront_WAR_isufront_entityType=rozhodnutie&_isufront_WAR_isufront_cur="
+pager_link = "https://obcan.justice.sk/infosud?p_p_id=isufront_WAR_isufront&p_p_col_id=column-1&p_p_col_count=1&p_p_mode=view&_isufront_WAR_isufront_view=list&p_p_state=normal&_isufront_WAR_isufront_entityType=rozhodnutie&_isufront_WAR_isufront_delta=75&_isufront_WAR_isufront_cur="
 file_path_ids = "./file_ids.txt"
 
 profile = webdriver.FirefoxProfile()
@@ -66,8 +66,8 @@ existing_file_count = len(existing_file_links)
 log_activity(current_datetime() + "\nHas {0} files\n".format(existing_file_count))
 log_activity(current_datetime() + "\nStarting crawling session\n")
 
-driver.get("https://obcan.justice.sk/infosud/-/infosud/zoznam/rozhodnutie")
-input()
+driver.get(pager_link + str(page_counter))
+
 print('Proceeding to crawling')
 
 while True:
@@ -101,31 +101,33 @@ while True:
                 ec.presence_of_element_located((By.CLASS_NAME, "documentDownload"))
             )
             element_download_button = driver.find_element_by_class_name("documentDownload")
-        except NoSuchElementException as E:
+
+            req = requests.get(element_download_button.get_attribute("href"), allow_redirects=True)
+
+            if req is not None and len(req.content) > 0:
+                file_counter += 1
+                no_break_counter += 1
+                open("D:/Rozsudky/" + str(file_counter + existing_file_count) + ".pdf", 'wb').write(req.content)
+                file_size = len(req.content)
+                total_file_size += file_size
+
+                element_filename_container = driver.find_element_by_class_name("documentList")
+                element_filename_label = element_filename_container.find_element_by_tag_name("h4")
+                file_name = element_filename_label.text
+
+                with open("./file_ids.txt", "a", encoding='UTF-8') as file_object:
+                    file_object.write(
+                        str(file_counter + existing_file_count) + " " + file_name + " " + element_url + "\n")
+
+                    log_activity(
+                        current_datetime() + "\nFile count: " + str(file_counter) + "\nTotal size " + readable_size(
+                            total_file_size))
+        except (NoSuchElementException, TimeoutException) as E:
             log_activity(current_datetime() + " " + E.msg + "\n" + E.stacktrace)
-            break
-
-        req = requests.get(element_download_button.get_attribute("href"), allow_redirects=True)
-
-        if req is not None and len(req.content) > 0:
-            file_counter += 1
-            no_break_counter += 1
-            open("D:/Rozsudky/" + str(file_counter + existing_file_count) + ".pdf", 'wb').write(req.content)
-            file_size = len(req.content)
-            total_file_size += file_size
-
-            element_filename_container = driver.find_element_by_class_name("documentList")
-            element_filename_label = element_filename_container.find_element_by_tag_name("h4")
-            file_name = element_filename_label.text
-
-            with open("./file_ids.txt", "a", encoding='UTF-8') as file_object:
-                file_object.write(str(file_counter + existing_file_count) + " " + file_name + " " + element_url + "\n")
-
-                log_activity(current_datetime() + "\nFile count: " + str(file_counter) + "\nTotal size " + readable_size(total_file_size))
-
-        sleep(randint(5, 10))
-        driver.close()
-        driver.switch_to.window(driver.window_handles[0])
+        finally:
+            sleep(randint(5, 10))
+            driver.close()
+            driver.switch_to.window(driver.window_handles[0])
 
     page_counter = page_counter + 1
     log_activity(current_datetime() + "\nGoing to page {0}\n".format(page_counter))
