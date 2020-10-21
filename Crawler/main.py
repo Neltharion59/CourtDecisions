@@ -9,7 +9,8 @@ from datetime import datetime
 import requests
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
-from os.path import exists
+from os.path import exists, isfile, join
+from os import listdir
 
 # https://stackoverflow.com/questions/1094841/reusable-library-to-get-human-readable-version-of-file-size
 from selenium.webdriver.support.wait import WebDriverWait
@@ -59,9 +60,12 @@ if exists(file_path_ids):
         for line in file_object:
             link = line.replace('\n', '').split(' ')[2]
             existing_file_links.append(link)
-            print(link)
 
-existing_file_count = len(existing_file_links)
+file_directory = "D:/Rozsudky"
+all_existing_id_list = [int(f.replace('.pdf', '')) for f in listdir(file_directory) if isfile(join(file_directory, f))]
+existing_file_count = max(all_existing_id_list)
+
+print(existing_file_count + " files exists")
 
 log_activity(current_datetime() + "\nHas {0} files\n".format(existing_file_count))
 log_activity(current_datetime() + "\nStarting crawling session\n")
@@ -123,7 +127,7 @@ while True:
                         current_datetime() + "\nFile count: " + str(file_counter) + "\nTotal size " + readable_size(
                             total_file_size))
         except (NoSuchElementException, TimeoutException) as E:
-            log_activity(current_datetime() + " " + E.msg + "\n" + E.stacktrace)
+            log_activity(current_datetime() + " " + str(E.msg) + "\n" + str(E.stacktrace))
         finally:
             sleep(randint(5, 10))
             driver.close()

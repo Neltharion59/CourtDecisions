@@ -25,6 +25,7 @@ for key in filename_dict:
 
 ids_to_delete = sorted((int(x) for x in ids_to_delete))
 
+print(str(len(ids_to_delete)) + " ids to be deleted")
 print(ids_to_delete)
 print(duplicity_pairs)
 
