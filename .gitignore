@@ -6,3 +6,4 @@ Crawler/head.txt
 Crawler/Log/*
 geckodriver.log
 .idea/*
+Resources/*
