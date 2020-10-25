@@ -4,6 +4,13 @@ Crawler/file_ids_temp.txt
 Crawler/count.txt
 Crawler/head.txt
 Crawler/Log/*
+
+Indexer/__pycache__/
+Indexer/Blacklists/*
+
+Preprocessor/blacklist_id.txt
+
+Resources/*
+
 geckodriver.log
 .idea/*
-Resources/*
