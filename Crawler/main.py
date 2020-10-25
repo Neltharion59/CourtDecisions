@@ -65,7 +65,7 @@ file_directory = "D:/Rozsudky"
 all_existing_id_list = [int(f.replace('.pdf', '')) for f in listdir(file_directory) if isfile(join(file_directory, f))]
 existing_file_count = max(all_existing_id_list)
 
-print(existing_file_count + " files exists")
+print(str(existing_file_count) + " files exists")
 
 log_activity(current_datetime() + "\nHas {0} files\n".format(existing_file_count))
 log_activity(current_datetime() + "\nStarting crawling session\n")
@@ -90,8 +90,8 @@ while True:
     for element in element_link_list:
         element_url = element.get_attribute('href')
         if element_url in existing_file_links:
-            existing_file_links.remove(element_url)
             continue
+        existing_file_links.append(element_url)
 
         sleep(5)
 
