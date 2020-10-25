@@ -34,7 +34,7 @@ start_datetime = current_datetime()
 
 def log_activity(message):
     print(message)
-    log_file_object = open("./Log/activity_log_" + start_datetime + ".txt", "w+")
+    log_file_object = open("./Log/activity_log_" + start_datetime + ".txt", "a+")
     log_file_object.write(message)
     log_file_object.close()
 
