@@ -1,2 +1,2 @@
-file_directory = "../Resources/Documents_pdf"
+file_directory = "../Resources/Documents_txt"
 index_directory = "./../Resources/Indexes"
