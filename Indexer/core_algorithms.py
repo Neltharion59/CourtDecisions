@@ -34,7 +34,6 @@ def write_into_index_file(indexed_file_id, indexed_value, index_file_path, sort_
     contents = "\n".join(contents)
     f.write(contents)
     f.close()
-    pass
 
 
 def create_attribute_index(index_name, attribute_regex, ignore_blacklist=True, regex_group_index=[0], sort_lambda=None, reverse_order=False):
