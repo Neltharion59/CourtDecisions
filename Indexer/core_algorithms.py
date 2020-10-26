@@ -32,7 +32,7 @@ def write_into_index_file(indexed_file_id, indexed_value, index_file_path):
     pass
 
 
-def create_attribute_index(index_name, attribute_regex, ignore_blacklist = True):
+def create_attribute_index(index_name, attribute_regex, ignore_blacklist=True, regex_group_index=0):
     index_file_path = "./../Resources/Indexes/index_{}.txt".format(index_name)
     blacklist_file_path = "Blacklists/blacklist_index_{}.txt".format(index_name)
 
@@ -50,11 +50,14 @@ def create_attribute_index(index_name, attribute_regex, ignore_blacklist = True)
     new_id_list = list(set(all_id_list) - set(existing_id_list))
 
     if ignore_blacklist:
-        blacklist_ids = []
-        with open(blacklist_file_path, "r") as file:
-            for line in file:
-                blacklist_ids.append(line.replace("\n", ""))
-        new_id_list = list(set(new_id_list) - set(blacklist_ids))
+        try:
+            with open(blacklist_file_path, "r") as file:
+                blacklist_ids = []
+                for line in file:
+                    blacklist_ids.append(line.replace("\n", ""))
+            new_id_list = list(set(new_id_list) - set(blacklist_ids))
+        except FileNotFoundError:
+            pass
 
     i = 1
     text = ""
@@ -64,14 +67,18 @@ def create_attribute_index(index_name, attribute_regex, ignore_blacklist = True)
         with open(file_txt_directory + "/" + file_id + ".txt", "r") as file:
             text = file.read()
 
-        matches = re.findall(attribute_regex, text)
+        regex = re.compile(attribute_regex, re.MULTILINE)
+        matches = regex.findall(text)
 
+        i = i + 1
         if len(matches) != 1:
             with open(blacklist_file_path, "a+") as file:
                 file.write(file_id + "\n")
             continue
 
         match = matches[0]
+        if type(match) is tuple:
+            match = match[regex_group_index]
         write_into_index_file(file_id, match, index_file_path)
 
-        i = i + 1
+
