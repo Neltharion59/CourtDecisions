@@ -4,7 +4,7 @@ import re
 from shared_info import file_txt_directory, index_directory
 
 
-def write_into_index_file(indexed_file_id, indexed_value, index_file_path):
+def write_into_index_file(indexed_file_id, indexed_value, index_file_path, sort_lambda, reverse_order):
     contents = []
     try:
         f = open(index_file_path, "r", encoding='utf-8')
@@ -25,7 +25,10 @@ def write_into_index_file(indexed_file_id, indexed_value, index_file_path):
         contents.append(indexed_value + ":" + indexed_file_id)
         pass
 
-    contents.sort()
+    if not sort_lambda:
+        contents.sort(reverse=reverse_order)
+    else:
+        contents.sort(key=sort_lambda, reverse=reverse_order)
 
     f = open(index_file_path, "w+", encoding='utf-8')
     contents = "\n".join(contents)
@@ -34,7 +37,7 @@ def write_into_index_file(indexed_file_id, indexed_value, index_file_path):
     pass
 
 
-def create_attribute_index(index_name, attribute_regex, ignore_blacklist=True, regex_group_index=[0]):
+def create_attribute_index(index_name, attribute_regex, ignore_blacklist=True, regex_group_index=[0], sort_lambda=None, reverse_order=False):
     index_file_path = "./../Resources/Indexes/index_{}.txt".format(index_name)
     blacklist_file_path = "Blacklists/blacklist_index_{}.txt".format(index_name)
 
@@ -87,6 +90,6 @@ def create_attribute_index(index_name, attribute_regex, ignore_blacklist=True, r
             if type(match) is tuple:
                 match = ""
 
-        write_into_index_file(file_id, match, index_file_path)
+        write_into_index_file(file_id, match, index_file_path, sort_lambda, reverse_order)
 
 
