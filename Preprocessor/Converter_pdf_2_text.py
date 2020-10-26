@@ -34,6 +34,13 @@ all_pdf_id_list = [f.replace('.pdf', '') for f in listdir(file_pdf_directory) if
 all_txt_id_list = [f.replace('.txt', '') for f in listdir(file_txt_directory) if isfile(join(file_txt_directory, f))]
 only_pdf_id_list = list(set(all_pdf_id_list) - set(all_txt_id_list))
 
+blacklist_ids = []
+with open(preprocessor_blacklist_id_file, "r") as file:
+    for line in file:
+        blacklist_ids.append(line.replace("\n", ""))
+new_id_list = list(set(only_pdf_id_list) - set(blacklist_ids))
+only_pdf_id_list = new_id_list
+
 counter = 1
 bad_ids = 0
 for file_id in only_pdf_id_list:
