@@ -1,0 +1,1 @@
+from shared_info import file_txt_directory

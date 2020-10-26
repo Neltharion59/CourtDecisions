@@ -7,7 +7,7 @@ from io import StringIO
 from os import listdir
 from os.path import isfile, join
 
-from shared_info import file_pdf_directory, file_txt_directory, index_directory, blacklist_id_file
+from shared_info import file_pdf_directory, file_txt_directory, preprocessor_blacklist_id_file
 
 
 def convert_pdf_to_txt(path, pages=None):
@@ -47,7 +47,7 @@ for file_id in only_pdf_id_list:
         print("Converted file " + str(counter) + "/" + str(len(only_pdf_id_list) - bad_ids))
         counter = counter + 1
     except PSEOF:
-        with open(blacklist_id_file, 'a+') as text_file:
+        with open(preprocessor_blacklist_id_file, 'a+') as text_file:
             text_file.write(file_id + "\n")
 
         bad_ids = bad_ids + 1
