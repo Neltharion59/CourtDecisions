@@ -3,6 +3,12 @@ from shared_info import file_txt_directory
 unwanted_chars = ['/', ',', '.', '(', ')', ':']
 all_chars = "aáäbcčdďeéfghiíjklľĺmnňoóôpqrřsštťuúůvxyýzž"
 
+
+def tokenize_string(string):
+    tokens = string.split(' ')
+    return tokens
+
+
 def clear_string(string):
     # Lowercase
     string = string.lower()
