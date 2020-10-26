@@ -5,6 +5,8 @@ Crawler/count.txt
 Crawler/head.txt
 Crawler/Log/*
 
+interpreter/*
+
 Indexer/__pycache__/*
 Indexer/Blacklists/*
 
