@@ -76,10 +76,12 @@ def create_attribute_index(index_name, attribute_regex, ignore_blacklist=True, r
         matches = regex.findall(text)
 
         i = i + 1
-        if len(matches) != 1:
+        if len(matches) <= 0:
             with open(blacklist_file_path, "a+") as file:
                 file.write(file_id + "\n")
             continue
+        if len(matches) > 1:
+            matches = list(matches[0])
 
         match = matches[0]
         if type(match) is tuple:

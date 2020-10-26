@@ -1,6 +1,6 @@
 from shared_info import file_txt_directory
 
-file_ids = [1490,4298,4478,6705,7830,11863,13054,13273,8]
+file_ids = [3376]
 
 for file_id in file_ids:
     try:
