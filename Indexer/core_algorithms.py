@@ -34,7 +34,7 @@ def write_into_index_file(indexed_file_id, indexed_value, index_file_path):
     pass
 
 
-def create_attribute_index(index_name, attribute_regex, ignore_blacklist=True, regex_group_index=0):
+def create_attribute_index(index_name, attribute_regex, ignore_blacklist=True, regex_group_index=[0]):
     index_file_path = "./../Resources/Indexes/index_{}.txt".format(index_name)
     blacklist_file_path = "Blacklists/blacklist_index_{}.txt".format(index_name)
 
@@ -80,7 +80,13 @@ def create_attribute_index(index_name, attribute_regex, ignore_blacklist=True, r
 
         match = matches[0]
         if type(match) is tuple:
-            match = match[regex_group_index]
+            for index in regex_group_index:
+                if len(match[index]) > 0:
+                    match = match[index]
+                    break
+            if type(match) is tuple:
+                match = ""
+
         write_into_index_file(file_id, match, index_file_path)
 
 
