@@ -1,7 +1,7 @@
 import re
 from shared_info import file_txt_directory
 unwanted_chars = ['/', ',', '.', '(', ')', ':']
-all_chars = "aáäbcčdďeéfghiíjklľĺmnňoóôpqrřsštťuúůvxyýzž"
+all_lowercase_chars = "aáäbcčdďeéfghiíjklľĺmnňoóôpqrřsštťuúůvxyýzž"
 
 
 def tokenize_string(string):
@@ -29,7 +29,7 @@ def clear_string(string):
     string = clear_whitespaces(string)
 
     # Single-letter words
-    for char in all_chars:
+    for char in all_lowercase_chars:
         string = re.sub(" " + char + "{2,} ", "", string)
 
     return string

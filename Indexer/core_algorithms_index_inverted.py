@@ -37,7 +37,7 @@ def write_into_index_file(indexed_file_id, indexed_value, index_file_path, sort_
 
 
 def create_attribute_index(index_name, attribute_regex, ignore_blacklist=True, regex_group_index=[0], sort_lambda=None, reverse_order=False):
-    index_file_path = "./../Resources/Indexes/index_{}.txt".format(index_name)
+    index_file_path = "{}/index_{}.txt".format(index_directory, index_name)
     blacklist_file_path = "Blacklists/blacklist_index_{}.txt".format(index_name)
 
     all_id_list = [f.replace('.txt', '') for f in listdir(file_txt_directory) if isfile(join(file_txt_directory, f))]
