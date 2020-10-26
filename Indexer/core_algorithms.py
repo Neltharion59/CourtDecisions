@@ -44,7 +44,7 @@ def create_attribute_index(index_name, attribute_regex, ignore_blacklist=True, r
     try:
         f = open(index_file_path, "r", encoding='utf-8')
         for line in f:
-            existing_id_list = existing_id_list + line.split(':')[1].split(',')
+            existing_id_list = existing_id_list + line.replace("\n", "").split(':')[1].split(',')
         f.close()
     except FileNotFoundError:
         pass
