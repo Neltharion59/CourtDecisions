@@ -1,6 +1,6 @@
 from shared_info import file_txt_directory
 
-file_ids = [3376]
+file_ids = range(30)
 
 for file_id in file_ids:
     try:
