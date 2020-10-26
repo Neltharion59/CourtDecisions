@@ -10,7 +10,14 @@ import requests
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
 from os.path import exists, isfile, join
-from os import listdir
+from os import listdir, getcwd
+
+import sys
+conf_path = getcwd()
+sys.path.append(conf_path)
+sys.path.append(conf_path + '..')
+sys.path.append(conf_path + '../..')
+
 from shared_info import file_pdf_directory
 from crawler_file_paths import file_id_path
 
