@@ -11,6 +11,8 @@ from selenium.webdriver.support import expected_conditions as ec
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
 from os.path import exists, isfile, join
 from os import listdir
+from shared_info import file_pdf_directory
+from crawler_file_paths import file_id_path
 
 # https://stackoverflow.com/questions/1094841/reusable-library-to-get-human-readable-version-of-file-size
 from selenium.webdriver.support.wait import WebDriverWait
@@ -40,12 +42,11 @@ def log_activity(message):
 
 
 pager_link = "https://obcan.justice.sk/infosud?p_p_id=isufront_WAR_isufront&p_p_col_id=column-1&p_p_col_count=1&p_p_mode=view&_isufront_WAR_isufront_view=list&p_p_state=normal&_isufront_WAR_isufront_entityType=rozhodnutie&_isufront_WAR_isufront_delta=75&_isufront_WAR_isufront_cur="
-file_path_ids = "./file_ids.txt"
 
 profile = webdriver.FirefoxProfile()
 profile.set_preference("browser.download.folderList", 2)
 profile.set_preference("browser.download.manager.showWhenStarting", False)
-profile.set_preference("browser.download.dir", "D:/Rozsudky")
+profile.set_preference("browser.download.dir", file_pdf_directory)
 profile.set_preference("browser.helperapps.neverAsk.saveToDisk", "application/octet-stream,application/pdf")
 driver = webdriver.Firefox(firefox_profile=profile)
 
@@ -55,14 +56,13 @@ total_file_size = 0
 no_break_counter = 0
 
 existing_file_links = []
-if exists(file_path_ids):
-    with open(file_path_ids, "r", encoding='UTF-8') as file_object:
+if exists(file_id_path):
+    with open(file_id_path, "r", encoding='UTF-8') as file_object:
         for line in file_object:
             link = line.replace('\n', '').split(' ')[2]
             existing_file_links.append(link)
 
-file_directory = "D:/Rozsudky"
-all_existing_id_list = [int(f.replace('.pdf', '')) for f in listdir(file_directory) if isfile(join(file_directory, f))]
+all_existing_id_list = [int(f.replace('.pdf', '')) for f in listdir(file_pdf_directory) if isfile(join(file_pdf_directory, f))]
 existing_file_count = max(all_existing_id_list)
 
 print(str(existing_file_count) + " files exists")
@@ -111,7 +111,7 @@ while True:
             if req is not None and len(req.content) > 0:
                 file_counter += 1
                 no_break_counter += 1
-                open("D:/Rozsudky/" + str(file_counter + existing_file_count) + ".pdf", 'wb').write(req.content)
+                open(file_pdf_directory + "/" + str(file_counter + existing_file_count) + ".pdf", 'wb').write(req.content)
                 file_size = len(req.content)
                 total_file_size += file_size
 
@@ -119,7 +119,7 @@ while True:
                 element_filename_label = element_filename_container.find_element_by_tag_name("h4")
                 file_name = element_filename_label.text
 
-                with open("./file_ids.txt", "a", encoding='UTF-8') as file_object:
+                with open(file_id_path, "a", encoding='UTF-8') as file_object:
                     file_object.write(
                         str(file_counter + existing_file_count) + " " + file_name + " " + element_url + "\n")
 

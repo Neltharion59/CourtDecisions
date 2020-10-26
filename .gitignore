@@ -11,6 +11,7 @@ Indexer/Blacklists/*
 Preprocessor/blacklist_id.txt
 
 Resources/*
+Resources_Backup/*
 
 geckodriver.log
 .idea/*
