@@ -17,7 +17,7 @@ def write_into_index_file(indexed_file_id, indexed_value):
     except FileNotFoundError:
         pass
 
-    values = [line.split(':')[0] for line in contents]
+    values = [x.split(':')[0] for x in contents]
     try:
         value_index = values.index(indexed_value)
         id_list = [int(y) for y in contents[value_index].split(':')[1].split(',')]
@@ -50,6 +50,12 @@ except FileNotFoundError:
     pass
 
 new_id_list = list(set(all_id_list) - set(existing_id_list))
+blacklist_ids = []
+with open(blacklist_file_path, "r") as file:
+    for line in file:
+        blacklist_ids.append(line.replace("\n", ""))
+
+new_id_list = list(set(new_id_list) - set(blacklist_ids))
 
 i = 1
 text = ""
