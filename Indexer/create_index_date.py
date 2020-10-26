@@ -1,4 +1,4 @@
-from core_algorithms import create_attribute_index
+from core_algorithms_index_inverted import create_attribute_index
 from datetime import datetime
 
 index_name = "dates"
