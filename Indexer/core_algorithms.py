@@ -25,6 +25,8 @@ def write_into_index_file(indexed_file_id, indexed_value, index_file_path):
         contents.append(indexed_value + ":" + indexed_file_id)
         pass
 
+    contents.sort()
+
     f = open(index_file_path, "w+", encoding='utf-8')
     contents = "\n".join(contents)
     f.write(contents)
