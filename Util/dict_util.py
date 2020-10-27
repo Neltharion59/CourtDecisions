@@ -35,4 +35,34 @@ def single_letter_dict_2_string(dict_in):
 
 
 def single_letter_string_2_dict(string_in):
-    pass
+    dict_out = {}
+
+    word_sections = string_in.split('$')
+    for word_section in word_sections:
+        # Get rid of empty lines
+        lines = word_section.split("\n")
+        lines = lines[1:-1]
+        # Isolate word itself
+        if len(lines) <= 0:
+            continue
+        word = lines[0]
+        lines = lines[1:]
+        # Create word entry in dict
+        dict_out[word] = {}
+        for line in lines:
+            tokens = line.split(':')
+            dict_out[word][tokens[0]] = tokens[1].split(',')
+
+    return dict_out
+
+
+def merge_single_letter_dicts(dict_1, dict_2):
+    for key in dict_2:
+        if key not in dict_1:
+            dict_1[key] = {}
+        for key_2 in dict_2[key]:
+            if key_2 not in dict_1[key]:
+                dict_1[key][key_2] = []
+            dict_1[key][key_2] = sorted(dict_1[key][key_2] + list(set(dict_2[key][key_2]) - set(dict_1[key][key_2])))
+
+    return dict_1
