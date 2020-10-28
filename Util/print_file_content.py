@@ -1,10 +1,10 @@
-from shared_info import file_txt_directory
+from shared_info import file_txt_directory, file_word_directory
 
 file_ids = range(30)
 
 for file_id in file_ids:
     try:
-        with open(file_txt_directory + "/{}.txt".format(file_id), "r") as file:
+        with open(file_word_directory + "/{}.txt".format(file_id), "r") as file:
             print(file.read())
     except FileNotFoundError:
         pass

@@ -1,7 +1,13 @@
 import re
-from shared_info import file_txt_directory
-unwanted_chars = ['/', ',', '.', '(', ')', ':']
-all_lowercase_chars = "aáäbcčdďeéfghiíjklľĺmnňoóôpqrřsštťuúůvxyýzž"
+
+unwanted_chars = '/,.():„“_-%€§;!?[]+*"‰&#=|<>'
+unwanted_patterns = [
+    [" [a-zA-ZěščřžýáíéóôúůďťňľĎŇŤŠČŘŽÝÁÍÉÚŮÓÔĽ]\.", ""],
+    ["[0-9]+", ""],
+    ["(^| )\<[0-9a-zA-ZěščřžýáíéóôúůďťňľĎŇŤŠČŘŽÝÁÍÉÚŮÓÔĽ]\>($| )", " "],
+]
+single_letter_words = "aikosuvz"
+all_lowercase_chars = "aáäbcčdďeéfghiíjklľĺmnňoóôpqrřsštťuúůvwxyýzž"
 
 
 def tokenize_string(string):
@@ -19,18 +25,31 @@ def clear_string(string):
     for match in matches:
         string = string.replace(match, match.replace(' ', ''))
 
-    # Abreviations
-    string = re.sub(" [a-zA-ZěščřžýáíéóôúůďťňľĎŇŤŠČŘŽÝÁÍÉÚŮÓÔĽ]\.", "", string)
-
     # Messy chars
     string = strip_chars(string)
 
     # Whitespace
     string = clear_whitespaces(string)
 
-    # Single-letter words
+    # Words that aren't really words
+    for regex_pair in unwanted_patterns:
+        string = re.sub(regex_pair[0], regex_pair[1], string)
+
+    # Whitespace again
+    string = clear_whitespaces(string)
+
+    # Single-letter-composed words
     for char in all_lowercase_chars:
-        string = re.sub(" " + char + "{2,} ", "", string)
+        string = re.sub("" + char + "{3,}", "", string)
+    for char in all_lowercase_chars:
+        string = re.sub("(^| )" + char + "{2,}($| )", " ", string)
+
+    # Single-letter words
+    for char in set(all_lowercase_chars)-set(single_letter_words):
+        string = re.sub("(^| ){}($| )".format(char), " ", string)
+
+    # Whitespace and again
+    string = clear_whitespaces(string)
 
     return string
 
