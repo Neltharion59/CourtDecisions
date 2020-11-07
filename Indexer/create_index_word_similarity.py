@@ -27,7 +27,7 @@ index_output_file_path_template = "{}/index_{}_letter_{}.txt".format(index_direc
 index_suffix_names = list(all_lowercase_chars) + ["misc"]
 
 pattern_word_delimiter = re.compile("^\$$")
-pattern_positional_index_row = re.compile("^[1-9][0-9]*\:([1-9][0-9]*\,)*[1-9][0-9]*$")
+pattern_positional_index_row = re.compile("^[0-9]+\:([0-9]+\,)*[0-9]+$")
 
 vocabulary_top = []
 vocabulary = []
