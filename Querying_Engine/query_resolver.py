@@ -1,14 +1,33 @@
+from Indexer.create_index_judge import index_name as index_name_judge
+from Indexer.create_index_court import index_name as index_name_court
+from Indexer.create_index_date import index_name as index_name_date
+from Indexer.create_index_id_number import index_name as index_name_id
+from Indexer.create_index_reference_number import index_name as index_name_reference_number
+from Indexer.create_index_words import index_name as index_name_word_positions
+from shared_info import index_directory
+from Util.tokenizer import all_lowercase_chars
+import re
+
 expression_types = ["and", "or"]
+attribute_to_index_dictionary = {
+    "sudca": index_name_judge,
+    "súd": index_name_court,
+    "dátum": index_name_date,
+    "idč": index_name_id,
+    "spzn": index_name_reference_number
+}
+index_input_path = "{}/index_{}.txt".format(index_directory, "{}")
+index_positional_input_path = index_input_path.format("{}_letter_{}".format(index_name_word_positions, '{}'))
+word_regex = re.compile("^[a-zA-Z{}]+$".format(all_lowercase_chars))
+document_record_regex = re.compile("^[0-9]+\:([0-9]+\,)*[0-9]+$")
 
 
 def resolve_text_query(query_text):
-    results = []
-
     query_root = parse_to_tree(query_text)
     print(query_root)
     matching_ids = query_documents(query_root)
 
-    return results
+    return matching_ids
 
 
 def parse_to_tree(query_text):
@@ -89,9 +108,62 @@ def query_documents(query):
     return result_ids
 
 
-def evaluate_full_text_query(text):
-    pass
-
-
 def evaluate_attribute_query(text):
+    attribute_name, attribute_value = text.split('=')
+
+    if attribute_name not in attribute_to_index_dictionary:
+        raise ValueError("Trying to query non-existent attribute - {}".format(attribute_name))
+
+    index_path = index_input_path.format(attribute_to_index_dictionary[attribute_name])
+    matching_ids = []
+    with open(index_path, 'r', encoding='utf-8') as index_file:
+        for line in index_file:
+            tokens = line.split(':')
+            if tokens[0].lower() == attribute_value.lower():
+                matching_ids = tokens[1].replace('\n', '').split(',')
+
+    return matching_ids
+
+
+def evaluate_full_text_query(text):
+    full_text_query_words = text.split(' ')
+
+    word_occurences = []
+    for word in full_text_query_words:
+        document_dict = {}
+        try:
+            with open(index_positional_input_path.format(word[0]), 'r', encoding='utf-8') as input_file:
+                in_word = False
+                for line in input_file:
+                    line = line.replace('\n', '')
+
+                    if line == "$" and in_word:
+                        break
+
+                    if word_regex.match(line):
+                        print("word: " + line)
+                        if word != line:
+                            continue
+                        else:
+                            in_word = True
+
+                    if document_record_regex.match(line) and in_word:
+                        tokens = line.split(':')
+                        document_id = tokens[0]
+                        positions = [int(x) for x in tokens[1].split(',')]
+                        document_dict[document_id] = positions
+        except FileNotFoundError:
+            pass
+        word_occurences.append({"word": word, "occurences": document_dict})
+
+    print(word_occurences)
+
+    document_occurence_dict = {}
+    for word_entry in word_occurences:
+        pass
     pass
+
+
+#ids = resolve_text_query('sudca="JUDr. Michal Eliaš" AND súd="Okresný súd Trnava" AND "ukradol deti"')
+ids = resolve_text_query('sudca="JUDr. Michal Eliaš" AND súd="Okresný súd Trnava" AND "odstránil"')
+print(ids)

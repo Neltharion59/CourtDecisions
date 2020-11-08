@@ -1,4 +1,4 @@
-from core_algorithms_index_positional import create_attribute_index
+from Indexer.core_algorithms_index_positional import create_attribute_index
 
 index_name = "words"
 
