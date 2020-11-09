@@ -223,6 +223,3 @@ queries = [
     '"odstránil visiaci zámok"',
     '"odstránil"'
 ]
-for query in queries:
-    ids = resolve_text_query(query)
-    print(ids)
