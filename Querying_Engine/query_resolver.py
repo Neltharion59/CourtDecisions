@@ -6,6 +6,8 @@ from Indexer.create_index_reference_number import index_name as index_name_refer
 from Indexer.create_index_words import index_name as index_name_word_positions
 from shared_info import index_directory
 from Util.tokenizer import all_lowercase_chars
+from functools import reduce
+import operator as op
 import re
 
 expression_types = ["and", "or"]
@@ -20,14 +22,14 @@ index_input_path = "{}/index_{}.txt".format(index_directory, "{}")
 index_positional_input_path = index_input_path.format("{}_letter_{}".format(index_name_word_positions, '{}'))
 word_regex = re.compile("^[a-zA-Z{}]+$".format(all_lowercase_chars))
 document_record_regex = re.compile("^[0-9]+\:([0-9]+\,)*[0-9]+$")
+inverse_order_relevance_penalty = 0.5
 
 
 def resolve_text_query(query_text):
     query_root = parse_to_tree(query_text)
-    print(query_root)
     matching_ids = query_documents(query_root)
-
-    return matching_ids
+    sorted_ids = order_by_relevance(matching_ids)
+    return sorted_ids
 
 
 def parse_to_tree(query_text):
@@ -98,12 +100,26 @@ def query_documents(query):
         id_lists.append(ids)
 
     result_ids = id_lists[0]
+    for result in result_ids:
+        temp = result["relevance"]
+        result["relevance"] = []
+        result["relevance"].append(temp)
+
     if logical_operator == "and":
         for id_list in id_lists[1:]:
-            result_ids = [x for x in result_ids if x in id_list]
+            id_only_list = [x["id"] for x in id_list]
+            temp = []
+            for result in result_ids:
+                if result["id"] in id_only_list:
+                    result["relevance"].append(id_list[id_only_list.index(result["id"])]["relevance"])
+                    temp.append(result)
+            result_ids = temp
     elif logical_operator == "or":
         for id_list in id_lists[1:]:
             result_ids = result_ids + [x for x in id_list if x not in result_ids]
+
+    for result in result_ids:
+        result["relevance"] = round(reduce(op.add, result["relevance"])/len(result["relevance"]), 2)
 
     return result_ids
 
@@ -123,7 +139,8 @@ def evaluate_attribute_query(text):
             if tokens[0].lower() == attribute_value.lower():
                 matching_ids = tokens[1].replace('\n', '').split(',')
 
-    return matching_ids
+    ids_out = [{"id": document_id, "relevance": 1.0} for document_id in matching_ids]
+    return ids_out
 
 
 def evaluate_full_text_query(text):
@@ -167,13 +184,45 @@ def evaluate_full_text_query(text):
             document_occurence_dict[document_id][i] = word_occurences[i]["occurences"][document_id]
 
     if len(word_occurences) > 1:
-        pass
-    ids_out = [document_id for document_id in document_occurence_dict]
+        ids_out = []
+        for document_id in document_occurence_dict:
+            distances = []
+            for i in range(1, len(word_occurences)):
+                distances.append([])
+                for first_word_index in document_occurence_dict[document_id][i-1]:
+                    for second_word_index in document_occurence_dict[document_id][i]:
+                        if first_word_index == second_word_index:
+                            continue
+
+                        curr_relevance = abs(first_word_index-second_word_index)
+                        if first_word_index > second_word_index:
+                            curr_relevance = curr_relevance * (1 - inverse_order_relevance_penalty)
+                        curr_relevance = 1 - min(1, round(curr_relevance/100, 2))
+                        distances_index = i - 1
+
+                        distances[distances_index].append(curr_relevance)
+
+            relevance = reduce(op.add, [reduce(op.add, x)/len(x) if len(x) > 0 else 0 for x in distances])/len(distances)
+            ids_out.append({"id": document_id, "relevance": relevance})
+    else:
+        max_occurence = reduce(max, (len(document_occurence_dict[x][0]) for x in document_occurence_dict))
+        ids_out = [{"id": document_id, "relevance": len(document_occurence_dict[document_id][0])/max_occurence} for document_id in document_occurence_dict]
 
     return ids_out
 
 
-#ids = resolve_text_query('sudca="JUDr. Michal Eliaš" AND súd="Okresný súd Trnava" AND "ukradol deti"')
-ids = resolve_text_query('sudca="JUDr. Michal Eliaš" AND súd="Okresný súd Trnava" AND "odstránil"')
-#ids = resolve_text_query('sudca="JUDr. Michal Eliaš" AND súd="Okresný súd Trnava"')
-print(ids)
+def order_by_relevance(result_list):
+    return sorted(result_list, key=lambda x: x["relevance"], reverse=True)
+
+
+queries = [
+    'sudca="JUDr. Michal Eliaš" AND súd="Okresný súd Trnava" AND "ukradol deti"',
+    'sudca="JUDr. Michal Eliaš" AND súd="Okresný súd Trnava" AND "odstránil visiaci zámok"',
+    'sudca="JUDr. Michal Eliaš" AND súd="Okresný súd Trnava" AND "odstránil"',
+    'sudca="JUDr. Michal Eliaš" AND súd="Okresný súd Trnava"',
+    '"odstránil visiaci zámok"',
+    '"odstránil"'
+]
+for query in queries:
+    ids = resolve_text_query(query)
+    print(ids)
