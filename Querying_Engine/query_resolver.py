@@ -110,6 +110,7 @@ def query_documents(query):
 
 def evaluate_attribute_query(text):
     attribute_name, attribute_value = text.split('=')
+    attribute_value = attribute_value.replace('"', '')
 
     if attribute_name not in attribute_to_index_dictionary:
         raise ValueError("Trying to query non-existent attribute - {}".format(attribute_name))
@@ -141,7 +142,6 @@ def evaluate_full_text_query(text):
                         break
 
                     if word_regex.match(line):
-                        print("word: " + line)
                         if word != line:
                             continue
                         else:
@@ -156,14 +156,24 @@ def evaluate_full_text_query(text):
             pass
         word_occurences.append({"word": word, "occurences": document_dict})
 
-    print(word_occurences)
-
     document_occurence_dict = {}
     for word_entry in word_occurences:
+        for document_id in word_entry["occurences"]:
+            if document_id not in document_occurence_dict:
+                document_occurence_dict[document_id] = [[] for _ in word_occurences]
+
+    for i in range(len(word_occurences)):
+        for document_id in word_occurences[i]["occurences"]:
+            document_occurence_dict[document_id][i] = word_occurences[i]["occurences"][document_id]
+
+    if len(word_occurences) > 1:
         pass
-    pass
+    ids_out = [document_id for document_id in document_occurence_dict]
+
+    return ids_out
 
 
 #ids = resolve_text_query('sudca="JUDr. Michal Eliaš" AND súd="Okresný súd Trnava" AND "ukradol deti"')
 ids = resolve_text_query('sudca="JUDr. Michal Eliaš" AND súd="Okresný súd Trnava" AND "odstránil"')
+#ids = resolve_text_query('sudca="JUDr. Michal Eliaš" AND súd="Okresný súd Trnava"')
 print(ids)
