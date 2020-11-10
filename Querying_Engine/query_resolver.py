@@ -26,6 +26,7 @@ inverse_order_relevance_penalty = 0.5
 
 
 def resolve_text_query(query_text):
+    print("Resolving query: {}".format(query_text))
     query_root = parse_to_tree(query_text)
     matching_ids = query_documents(query_root)
     sorted_ids = order_by_relevance(matching_ids)
@@ -116,7 +117,12 @@ def query_documents(query):
             result_ids = temp
     elif logical_operator == "or":
         for id_list in id_lists[1:]:
-            result_ids = result_ids + [x for x in id_list if x not in result_ids]
+            id_only_list = [x["id"] for x in result_ids]
+            for doc_id in id_list:
+                if doc_id["id"] not in id_only_list:
+                    if doc_id["relevance"] is not list:
+                        doc_id["relevance"] = [doc_id["relevance"]]
+                    result_ids.append(doc_id)
 
     for result in result_ids:
         result["relevance"] = round(reduce(op.add, result["relevance"])/len(result["relevance"]), 2)
@@ -221,5 +227,9 @@ queries = [
     'sudca="JUDr. Michal Eliaš" AND súd="Okresný súd Trnava" AND "odstránil"',
     'sudca="JUDr. Michal Eliaš" AND súd="Okresný súd Trnava"',
     '"odstránil visiaci zámok"',
-    '"odstránil"'
+    '"odstránil"',
+    'sudca="JUDr. Michal Eliaš" OR súd="Okresný súd Trnava"',
+    'súd="Okresný súd Trnava"'
 ]
+#for query in queries:
+#    print("{}:{}".format(query, resolve_text_query(query)))
