@@ -9,6 +9,7 @@ from datetime import datetime
 import requests
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
+from selenium.webdriver.support.wait import WebDriverWait
 from os.path import exists, isfile, join
 from os import listdir, getcwd
 
@@ -19,12 +20,10 @@ sys.path.append(conf_path + '..')
 sys.path.append(conf_path + '../..')
 
 from shared_info import file_pdf_directory
-from crawler_file_paths import file_id_path
+from shared_info import file_id_path
+
 
 # https://stackoverflow.com/questions/1094841/reusable-library-to-get-human-readable-version-of-file-size
-from selenium.webdriver.support.wait import WebDriverWait
-
-
 def readable_size(num, suffix='B'):
     for unit in ['', 'K', 'M', 'G', 'T', 'P', 'E', 'Z']:
         if abs(num) < 1024.0:

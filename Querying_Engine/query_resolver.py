@@ -231,5 +231,5 @@ queries = [
     'sudca="JUDr. Michal Eliaš" OR súd="Okresný súd Trnava"',
     'súd="Okresný súd Trnava"'
 ]
-#for query in queries:
-#    print("{}:{}".format(query, resolve_text_query(query)))
+for query in queries:
+    print("{}:{}".format(query, resolve_text_query(query)))
