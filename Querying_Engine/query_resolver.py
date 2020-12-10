@@ -4,7 +4,7 @@ from Indexer.create_index_date import index_name as index_name_date
 from Indexer.create_index_id_number import index_name as index_name_id
 from Indexer.create_index_reference_number import index_name as index_name_reference_number
 from Indexer.create_index_words import index_name as index_name_word_positions
-from shared_info import index_directory
+from shared_info import index_directory, file_description_directory, file_word_directory
 from Util.tokenizer import all_lowercase_chars
 from functools import reduce
 import operator as op
@@ -18,12 +18,22 @@ attribute_to_index_dictionary = {
     "idč": index_name_id,
     "spzn": index_name_reference_number
 }
+index_to_attribute_scren_name_dictionary = {
+    index_name_judge: "Sudca",
+    index_name_court: "Súd",
+    index_name_date: "Dátum vydania",
+    index_name_id: "Identifikačné číslo spisu",
+    index_name_reference_number: "Spisová značka"
+}
 index_input_path = "{}/index_{}.txt".format(index_directory, "{}")
 index_positional_input_path = index_input_path.format("{}_letter_{}".format(index_name_word_positions, '{}'))
 word_regex = re.compile("^[a-zA-Z{}]+$".format(all_lowercase_chars))
 document_record_regex = re.compile("^[0-9]+\:([0-9]+\,)*[0-9]+$")
 inverse_order_relevance_penalty = 0.5
 
+file_preview_index_name = 'text_preview'
+text_preview_offset = 30
+text_preview_length = 30
 
 def resolve_text_query(query_text):
     print("Resolving query: {}".format(query_text))
@@ -221,15 +231,38 @@ def order_by_relevance(result_list):
     return sorted(result_list, key=lambda x: x["relevance"], reverse=True)
 
 
-queries = [
-    'sudca="JUDr. Michal Eliaš" AND súd="Okresný súd Trnava" AND "ukradol deti"',
-    'sudca="JUDr. Michal Eliaš" AND súd="Okresný súd Trnava" AND "odstránil visiaci zámok"',
-    'sudca="JUDr. Michal Eliaš" AND súd="Okresný súd Trnava" AND "odstránil"',
-    'sudca="JUDr. Michal Eliaš" AND súd="Okresný súd Trnava"',
-    '"odstránil visiaci zámok"',
-    '"odstránil"',
-    'sudca="JUDr. Michal Eliaš" OR súd="Okresný súd Trnava"',
-    'súd="Okresný súd Trnava"'
-]
-for query in queries:
-    print("{}:{}".format(query, resolve_text_query(query)))
+def retrieve_file_info(file_id):
+    result_file_info = {}
+
+    input_file_name = file_description_directory + "/" + file_id + ".txt"
+    try:
+        with open(input_file_name, 'r', encoding='utf-8') as input_file:
+            for line in input_file:
+                tokens = line.replace('\n', '').split(':')
+                result_file_info[tokens[0]] = tokens[1]
+    except FileNotFoundError:
+        print("File description of file with id " + file_id + " not found.")
+
+    input_file_name = file_word_directory + "/" + file_id + ".txt"
+    try:
+        with open(input_file_name, 'r') as input_file:
+            words = input_file.read().split(' ')
+            description = ' '.join(words[text_preview_offset: text_preview_offset + text_preview_length])
+            result_file_info[file_preview_index_name] = description
+    except FileNotFoundError:
+        print("Word file of file with id " + file_id + " not found.")
+
+    return result_file_info
+
+
+def stringify_file_info(file_info_dict):
+    result_string = ""
+    for attribute_name in file_info_dict:
+        if attribute_name in index_to_attribute_scren_name_dictionary:
+            result_string += index_to_attribute_scren_name_dictionary[attribute_name] + ":\t" + file_info_dict[attribute_name] + "\n"
+    if file_preview_index_name in file_info_dict:
+        print("Adding file info")
+        print(file_info_dict[file_preview_index_name])
+        print("Added file info")
+        result_string += file_info_dict[file_preview_index_name]
+    return result_string
