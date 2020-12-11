@@ -1,6 +1,7 @@
 from Querying_Engine.query_resolver import resolve_text_query, retrieve_file_info, stringify_file_info
 result_separator = '----------------------------------------------------------------------------'
 
+
 def query_resolving(input_generator):
     for user_input in input_generator:
         if user_input.lower() == "exit":
@@ -8,11 +9,13 @@ def query_resolving(input_generator):
 
         try:
             ids = resolve_text_query(user_input)
+            print("{} results".format(len(ids)))
             for file_id in ids:
                 print(result_separator)
                 print(stringify_file_info(retrieve_file_info(file_id['id'])))
         except:
             print("Wrong query")
+        print(result_separator)
 
 
 def cli_input_generator():

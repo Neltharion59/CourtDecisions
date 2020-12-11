@@ -152,7 +152,7 @@ def evaluate_attribute_query(text):
     with open(index_path, 'r', encoding='utf-8') as index_file:
         for line in index_file:
             tokens = line.split(':')
-            if tokens[0].lower() == attribute_value.lower():
+            if attribute_value.lower() in tokens[0].lower():
                 matching_ids = tokens[1].replace('\n', '').split(',')
 
     ids_out = [{"id": document_id, "relevance": 1.0} for document_id in matching_ids]
