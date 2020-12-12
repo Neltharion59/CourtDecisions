@@ -8,11 +8,11 @@ def query_resolving(input_generator):
             exit()
 
         try:
-            ids = resolve_text_query(user_input)
-            print("{} results".format(len(ids)))
-            for file_id in ids:
+            files = resolve_text_query(user_input)
+            print("{} results".format(len(files)))
+            for file in files:
                 print(result_separator)
-                print(stringify_file_info(retrieve_file_info(file_id['id'])))
+                print(stringify_file_info(file))
         except:
             print("Wrong query")
         print(result_separator)

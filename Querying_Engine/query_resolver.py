@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from Indexer.create_index_judge import index_name as index_name_judge
 from Indexer.create_index_court import index_name as index_name_court
 from Indexer.create_index_date import index_name as index_name_date
@@ -35,11 +37,14 @@ file_preview_index_name = 'text_preview'
 text_preview_offset = 30
 text_preview_length = 30
 
+
 def resolve_text_query(query_text):
+    print(query_text)
     print("Resolving query: {}".format(query_text))
     query_root = parse_to_tree(query_text)
     matching_ids = query_documents(query_root)
-    sorted_ids = order_by_relevance(matching_ids)
+    matching_files = list(filter(lambda x: index_name_date in x, map(lambda x: {**x, **retrieve_file_info(x['id'])}, matching_ids)))
+    sorted_ids = order_by_relevance(matching_files)
     return sorted_ids
 
 
@@ -228,7 +233,7 @@ def evaluate_full_text_query(text):
 
 
 def order_by_relevance(result_list):
-    return sorted(result_list, key=lambda x: x["relevance"], reverse=True)
+    return sorted(result_list, key=lambda x: (x["relevance"], datetime.strptime(x[index_name_date], "%d. %m. %Y")), reverse=True)
 
 
 def retrieve_file_info(file_id):
