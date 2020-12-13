@@ -39,7 +39,6 @@ text_preview_length = 30
 
 
 def resolve_text_query(query_text):
-    print(query_text)
     print("Resolving query: {}".format(query_text))
     query_root = parse_to_tree(query_text)
     matching_ids = query_documents(query_root)
@@ -266,8 +265,5 @@ def stringify_file_info(file_info_dict):
         if attribute_name in index_to_attribute_scren_name_dictionary:
             result_string += index_to_attribute_scren_name_dictionary[attribute_name] + ":\t" + file_info_dict[attribute_name] + "\n"
     if file_preview_index_name in file_info_dict:
-        print("Adding file info")
-        print(file_info_dict[file_preview_index_name])
-        print("Added file info")
         result_string += file_info_dict[file_preview_index_name]
     return result_string

@@ -11,9 +11,10 @@ from selenium.webdriver.support import expected_conditions as ec
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
 from selenium.webdriver.support.wait import WebDriverWait
 from os.path import exists, isfile, join
-from os import listdir, getcwd
-
+from os import listdir
+from os import getcwd
 import sys
+
 conf_path = getcwd()
 sys.path.append(conf_path)
 sys.path.append(conf_path + '..')
@@ -21,7 +22,6 @@ sys.path.append(conf_path + '../..')
 
 from shared_info import file_pdf_directory
 from shared_info import file_id_path
-
 
 # https://stackoverflow.com/questions/1094841/reusable-library-to-get-human-readable-version-of-file-size
 def readable_size(num, suffix='B'):

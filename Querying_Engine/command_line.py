@@ -1,3 +1,11 @@
+from os import getcwd
+import sys
+
+conf_path = getcwd()
+sys.path.append(conf_path)
+sys.path.append(conf_path + '..')
+sys.path.append(conf_path + '../..')
+
 from Querying_Engine.query_resolver import resolve_text_query, retrieve_file_info, stringify_file_info
 result_separator = '----------------------------------------------------------------------------'
 
