@@ -1,0 +1,5 @@
+courts:Okresný súd Košice II
+dates:05. 10. 2020
+identification_numbers:7220011221
+judges:JUDr. Janka Valachová
+reference_numbers:0T/171/2020

@@ -1,0 +1,5 @@
+courts:Okresný súd Trenčín
+dates:30. 09. 2020
+identification_numbers:3120011234
+judges:JUDr. Eva Tóthová
+reference_numbers:0T/131/2020

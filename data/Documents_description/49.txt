@@ -1,0 +1,5 @@
+courts:Okresný súd Spišská Nová Ves
+dates:05. 10. 2020
+identification_numbers:7620010580
+judges:JUDr. Petra Pavlisová
+reference_numbers:0T/88/2020

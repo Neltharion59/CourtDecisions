@@ -1,0 +1,5 @@
+courts:Okresný súd Malacky
+dates:06. 10. 2020
+identification_numbers:1620010545
+judges:Mgr. Adriana Šimková
+reference_numbers:0T/111/2020

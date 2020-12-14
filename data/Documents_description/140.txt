@@ -1,0 +1,5 @@
+courts:Okresný súd Spišská Nová Ves
+dates:02. 10. 2020
+identification_numbers:7620203863
+judges:JUDr. Miroslav Juričko
+reference_numbers:4P/103/2020

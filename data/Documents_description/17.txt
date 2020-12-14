@@ -1,0 +1,5 @@
+courts:Okresný súd Senica
+dates:07. 10. 2020
+identification_numbers:2620202202
+judges:JUDr. Emília Horňáková
+reference_numbers:6P/33/2020

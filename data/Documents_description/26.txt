@@ -1,0 +1,5 @@
+courts:Okresný súd Košice okolie
+dates:07. 10. 2020
+identification_numbers:7519010701
+judges:JUDr. Mariana Ginelliová
+reference_numbers:5T/156/2019

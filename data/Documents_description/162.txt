@@ -1,0 +1,5 @@
+courts:Okresný súd Dolný Kubín
+dates:01. 10. 2020
+identification_numbers:5420010209
+judges:JUDr. Rastislav Plutinský
+reference_numbers:0T/37/2020

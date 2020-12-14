@@ -1,0 +1,5 @@
+courts:Okresný súd Lučenec
+dates:07. 10. 2020
+identification_numbers:6620010537
+judges:JUDr. Ladislav Lóška
+reference_numbers:0T/113/2020

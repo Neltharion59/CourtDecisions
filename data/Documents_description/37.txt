@@ -1,0 +1,5 @@
+courts:Okresný súd Trnava
+dates:06. 10. 2020
+identification_numbers:2120207662
+judges:Mgr. Kamila Nagyová
+reference_numbers:35PPOm/1/2020

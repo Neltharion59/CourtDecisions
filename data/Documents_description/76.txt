@@ -1,0 +1,5 @@
+courts:Okresný súd Trenčín
+dates:02. 10. 2020
+identification_numbers:3120010640
+judges:JUDr. Marián Manduch
+reference_numbers:8T/44/2020

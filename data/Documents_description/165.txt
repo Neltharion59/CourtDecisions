@@ -1,0 +1,5 @@
+courts:Okresný súd Trenčín
+dates:01. 10. 2020
+identification_numbers:3120011092
+judges:JUDr. Beáta Schmidtová
+reference_numbers:2T/78/2020

@@ -1,0 +1,5 @@
+courts:Okresný súd Martin
+dates:05. 10. 2020
+identification_numbers:5720203064
+judges:Mgr. Peter Majcher
+reference_numbers:9P/138/2020

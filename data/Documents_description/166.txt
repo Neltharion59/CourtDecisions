@@ -1,0 +1,5 @@
+courts:Špecializovaný trestný súd
+dates:01. 10. 2020
+identification_numbers:9520100218
+judges:JUDr. Jozef Šutka
+reference_numbers:3T/30/2020

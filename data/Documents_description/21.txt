@@ -1,0 +1,5 @@
+courts:Okresný súd Prievidza
+dates:07. 10. 2020
+identification_numbers:3820203855
+judges:Mgr. Marianna Hašková
+reference_numbers:13C/26/2020

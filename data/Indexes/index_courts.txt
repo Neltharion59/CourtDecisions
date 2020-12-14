@@ -1,0 +1,39 @@
+Krajský súd Košice:149,187
+Okresný súd Bratislava II:19,28,144
+Okresný súd Bratislava III:27,40,170,182,186
+Okresný súd Bratislava IV:61
+Okresný súd Bratislava V:151,152
+Okresný súd Dolný Kubín:162
+Okresný súd Dunajská Streda:1,9,11,12,30,73,74,139
+Okresný súd Galanta:2,3,16,58,60,131
+Okresný súd Humenné:15
+Okresný súd Kežmarok:20,33
+Okresný súd Komárno:67,188
+Okresný súd Košice I:4,5,6,10,14,55,64,65,66,69,77
+Okresný súd Košice II:42,46,50,142
+Okresný súd Košice okolie:26,32,180
+Okresný súd Lučenec:24,43,129,130,154,172,197
+Okresný súd Malacky:34,143
+Okresný súd Martin:56
+Okresný súd Michalovce:31,36,52
+Okresný súd Nitra:13,25,45,70,71,72,75,168,178,179
+Okresný súd Nové Mesto nad Váhom:68,141,192
+Okresný súd Nové Zámky:44
+Okresný súd Námestovo:39,48
+Okresný súd Poprad:161,174,190,191
+Okresný súd Prešov:133,150,193
+Okresný súd Prievidza:7,21,47,147
+Okresný súd Revúca:148
+Okresný súd Rimavská Sobota:159,181,200
+Okresný súd Rožňava:63
+Okresný súd Senica:17,167,171
+Okresný súd Spišská Nová Ves:49,136,140,157,158,173,175
+Okresný súd Stará Ľubovňa:38,51,53,62,132
+Okresný súd Topoľčany:195
+Okresný súd Trenčín:76,160,163,164,165,169,194
+Okresný súd Trnava:8,35,37,155,156,183,184,185
+Okresný súd Veľký Krtíš:18,29
+Okresný súd Vranov nad Topľou:199
+Okresný súd Zvolen:153
+Okresný súd Žiar nad Hronom:23,54,57,59
+Špecializovaný trestný súd:134,166,189

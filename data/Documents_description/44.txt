@@ -1,0 +1,5 @@
+courts:Okresný súd Nové Zámky
+dates:05. 10. 2020
+identification_numbers:4420201815
+judges:Mgr. Kornélia Harcsová
+reference_numbers:4Pc/9/2020

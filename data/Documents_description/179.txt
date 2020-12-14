@@ -1,0 +1,5 @@
+courts:Okresný súd Nitra
+dates:01. 10. 2020
+identification_numbers:4120210372
+judges:JUDr. Renáta Šišková
+reference_numbers:27OdK/224/2020

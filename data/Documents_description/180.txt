@@ -1,0 +1,5 @@
+courts:Okresný súd Košice okolie
+dates:01. 10. 2020
+identification_numbers:7520010450
+judges:JUDr. Lenka Saloková
+reference_numbers:2T/96/2020

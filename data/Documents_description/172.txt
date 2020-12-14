@@ -1,0 +1,5 @@
+courts:Okresný súd Lučenec
+dates:01. 10. 2020
+identification_numbers:6620010483
+judges:JUDr. Stanislav Galovič
+reference_numbers:2T/123/2020

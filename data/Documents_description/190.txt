@@ -1,0 +1,5 @@
+courts:Okresný súd Poprad
+dates:30. 09. 2020
+identification_numbers:8720010653
+judges:JUDr. Pavol Roth
+reference_numbers:6T/67/2020

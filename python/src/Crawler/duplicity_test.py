@@ -3,6 +3,15 @@
 # Probably not necessary, this test was needed especially with first versions of crawler before bugs were fixed   ##
 ####################################################################################################################
 
+from os import getcwd
+import sys
+
+# Mandatory if we want to run this script from windows cmd. Must precede all imports from this project
+conf_path = getcwd()
+sys.path.append(conf_path)
+sys.path.append(conf_path + '..')
+sys.path.append(conf_path + '../..')
+
 # Custom imports from other folders of this project
 # Utility folder has scripts for dealing with common tasks, such as deleting pdf files from disk in this case
 from Util.file_deleting import delete_pdf_and_txt_files

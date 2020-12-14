@@ -1,0 +1,5 @@
+courts:Okresný súd Bratislava III
+dates:01. 10. 2020
+identification_numbers:1317010057
+judges:JUDr. Juraj Kapinaj
+reference_numbers:2T/8/2017

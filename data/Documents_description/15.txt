@@ -1,0 +1,5 @@
+courts:Okresný súd Humenné
+dates:07. 10. 2020
+identification_numbers:8320010678
+judges:JUDr. Marek Koščo
+reference_numbers:0T/66/2020

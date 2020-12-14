@@ -1,0 +1,5 @@
+courts:Okresný súd Veľký Krtíš
+dates:07. 10. 2020
+identification_numbers:6220010226
+judges:JUDr. Slavomír Cimerman
+reference_numbers:0T/25/2020

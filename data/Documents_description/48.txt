@@ -1,0 +1,5 @@
+courts:Okresný súd Námestovo
+dates:05. 10. 2020
+identification_numbers:5820010333
+judges:JUDr. Miriam Srogončíková
+reference_numbers:0T/80/2020

@@ -1,0 +1,5 @@
+courts:Okresný súd Dunajská Streda
+dates:08. 10. 2020
+identification_numbers:2220010757
+judges:JUDr. Mária Képessyová
+reference_numbers:0T/121/2020

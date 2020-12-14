@@ -1,0 +1,5 @@
+courts:Okresný súd Dunajská Streda
+dates:02. 10. 2020
+identification_numbers:2220202310
+judges:Mgr. Helena Marcinkechová
+reference_numbers:21P/29/2020

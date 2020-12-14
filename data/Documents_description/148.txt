@@ -1,0 +1,5 @@
+courts:Okresný súd Revúca
+dates:02. 10. 2020
+identification_numbers:6820200328
+judges:JUDr. Miroslava Kvetková
+reference_numbers:8P/11/2020

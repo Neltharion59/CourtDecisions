@@ -1,0 +1,5 @@
+courts:Okresný súd Bratislava II
+dates:07. 10. 2020
+identification_numbers:1220201460
+judges:Mgr. Katarína Mužilová
+reference_numbers:49Pc/5/2020

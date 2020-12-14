@@ -1,0 +1,5 @@
+courts:Okresný súd Trnava
+dates:01. 10. 2020
+identification_numbers:1120211770
+judges:Mgr. Eva Krošlák Cmerová
+reference_numbers:26OdK/12/2020

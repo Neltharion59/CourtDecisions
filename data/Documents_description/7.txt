@@ -1,0 +1,5 @@
+courts:Okresný súd Prievidza
+dates:09. 10. 2020
+identification_numbers:3820010337
+judges:JUDr. Noema Turanovičová
+reference_numbers:3Nt/14/2020

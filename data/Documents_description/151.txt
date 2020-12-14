@@ -1,0 +1,5 @@
+courts:Okresný súd Bratislava V
+dates:02. 10. 2020
+identification_numbers:1518205462
+judges:JUDr. Daniela Bergerová
+reference_numbers:59P/306/2018

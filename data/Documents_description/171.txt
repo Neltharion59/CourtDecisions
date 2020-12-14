@@ -1,0 +1,5 @@
+courts:Okresný súd Senica
+dates:01. 10. 2020
+identification_numbers:2618010418
+judges:JUDr. Jana Třešková
+reference_numbers:1T/51/2018

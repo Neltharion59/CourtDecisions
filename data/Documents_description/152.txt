@@ -1,0 +1,5 @@
+courts:Okresný súd Bratislava V
+dates:02. 10. 2020
+identification_numbers:1720200132
+judges:JUDr. Mária Moskvičová PhD.
+reference_numbers:41Pc/3/2020

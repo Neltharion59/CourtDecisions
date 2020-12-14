@@ -1,0 +1,5 @@
+courts:Okresný súd Vranov nad Topľou
+dates:30. 09. 2020
+identification_numbers:8820010469
+judges:Mgr. Marcela Holubová
+reference_numbers:2T/74/2020

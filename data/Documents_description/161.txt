@@ -1,0 +1,5 @@
+courts:Okresný súd Poprad
+dates:01. 10. 2020
+identification_numbers:8709205544
+judges:JUDr. Mariana Gavalierová
+reference_numbers:18Cb/228/2009

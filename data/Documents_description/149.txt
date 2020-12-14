@@ -1,0 +1,5 @@
+courts:Krajský súd Košice
+dates:02. 10. 2020
+identification_numbers:7017200069
+judges:JUDr. Ondrej Hvišč, PhD.
+reference_numbers:3Sa/3/2017

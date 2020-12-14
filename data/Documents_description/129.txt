@@ -1,0 +1,5 @@
+courts:Okresný súd Lučenec
+dates:02. 10. 2020
+identification_numbers:6620010526
+judges:JUDr. Tatiana Kovácsová
+reference_numbers:0T/111/2020

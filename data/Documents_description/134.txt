@@ -1,0 +1,5 @@
+courts:Špecializovaný trestný súd
+dates:02. 10. 2020
+identification_numbers:9520100195
+judges:JUDr. Michal Truban
+reference_numbers:5T/9/2020

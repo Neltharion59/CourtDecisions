@@ -1,0 +1,5 @@
+courts:Okresný súd Nitra
+dates:07. 10. 2020
+identification_numbers:4120011235
+judges:JUDr. Vladimír Sopúch
+reference_numbers:0T/151/2020

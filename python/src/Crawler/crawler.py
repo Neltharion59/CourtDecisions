@@ -19,7 +19,7 @@ from os.path import exists, isfile, join
 from os import listdir, getcwd
 import sys
 
-# Mandatory if we want to run this scripts from windows cmd. Must precede all imports from this project
+# Mandatory if we want to run this script from windows cmd. Must precede all imports from this project
 conf_path = getcwd()
 sys.path.append(conf_path)
 sys.path.append(conf_path + '..')

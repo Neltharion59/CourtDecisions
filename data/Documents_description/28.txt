@@ -1,0 +1,5 @@
+courts:Okresný súd Bratislava II
+dates:06. 10. 2020
+identification_numbers:1220010821
+judges:JUDr. Michaela Buceková PhD.
+reference_numbers:0T/298/2020

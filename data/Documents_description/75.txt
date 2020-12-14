@@ -1,0 +1,5 @@
+courts:Okresný súd Nitra
+dates:03. 10. 2020
+identification_numbers:4120011217
+judges:JUDr. Ján Kanás
+reference_numbers:0T/147/2020

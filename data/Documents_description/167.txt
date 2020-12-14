@@ -1,0 +1,5 @@
+courts:Okresný súd Senica
+dates:01. 10. 2020
+identification_numbers:2620010489
+judges:JUDr. Ľuboš Ondrejička
+reference_numbers:0T/28/2020

@@ -1,0 +1,5 @@
+courts:Okresný súd Prešov
+dates:30. 09. 2020
+identification_numbers:8120011529
+judges:JUDr. Beáta Šuťaková
+reference_numbers:6PP/21/2020

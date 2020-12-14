@@ -1,0 +1,5 @@
+courts:Okresný súd Košice I
+dates:09. 10. 2020
+identification_numbers:7120011289
+judges:JUDr. Ľuboš Vereš
+reference_numbers:5Nt/37/2020

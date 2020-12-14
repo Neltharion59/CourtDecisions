@@ -1,0 +1,5 @@
+courts:Okresný súd Stará Ľubovňa
+dates:05. 10. 2020
+identification_numbers:8520010282
+judges:JUDr. Erik Uhlár
+reference_numbers:1T/65/2020

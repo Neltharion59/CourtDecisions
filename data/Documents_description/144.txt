@@ -1,0 +1,5 @@
+courts:Okresný súd Bratislava II
+dates:02. 10. 2020
+identification_numbers:1220010812
+judges:JUDr. Pavol Juhás
+reference_numbers:0T/295/2020

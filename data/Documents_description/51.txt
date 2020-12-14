@@ -1,0 +1,5 @@
+courts:Okresný súd Stará Ľubovňa
+dates:05. 10. 2020
+identification_numbers:8520010161
+judges:Mgr. Vladimír Gurka
+reference_numbers:8T/21/2020

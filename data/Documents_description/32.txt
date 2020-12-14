@@ -1,0 +1,5 @@
+courts:Okresný súd Košice okolie
+dates:06. 10. 2020
+identification_numbers:7520010496
+judges:Mgr. Iveta Sonderlichová
+reference_numbers:4T/52/2020

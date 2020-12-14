@@ -7,6 +7,15 @@
 from os import listdir, makedirs
 from os.path import isfile, join
 
+from os import getcwd
+import sys
+
+# Mandatory if we want to run this script from windows cmd. Must precede all imports from this project
+conf_path = getcwd()
+sys.path.append(conf_path)
+sys.path.append(conf_path + '..')
+sys.path.append(conf_path + '../..')
+
 # Custom imports from other folders of this project
 # All paths to directories within project are held in one play, to be able to change them easily.
 from shared_info import file_description_directory, file_pdf_directory, index_directory

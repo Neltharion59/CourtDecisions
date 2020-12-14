@@ -1,0 +1,5 @@
+courts:Okresný súd Rimavská Sobota
+dates:01. 10. 2020
+identification_numbers:6920200649
+judges:JUDr. Viera Kvetková
+reference_numbers:16Pc/5/2020

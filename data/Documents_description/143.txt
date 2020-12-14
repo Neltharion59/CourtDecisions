@@ -1,0 +1,5 @@
+courts:Okresný súd Malacky
+dates:02. 10. 2020
+identification_numbers:1620010542
+judges:Mgr.Ing. Anna Přikrylová
+reference_numbers:0T/110/2020

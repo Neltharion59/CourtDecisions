@@ -1,0 +1,5 @@
+courts:Okresný súd Trnava
+dates:01. 10. 2020
+identification_numbers:2120202965
+judges:JUDr. Martin Smolko
+reference_numbers:36OdK/147/2020

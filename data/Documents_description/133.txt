@@ -1,0 +1,5 @@
+courts:Okresný súd Prešov
+dates:02. 10. 2020
+identification_numbers:8120010384
+judges:JUDr. Marián Vorobel
+reference_numbers:41T/16/2020

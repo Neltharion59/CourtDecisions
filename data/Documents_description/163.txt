@@ -1,0 +1,5 @@
+courts:Okresný súd Trenčín
+dates:01. 10. 2020
+identification_numbers:3120206595
+judges:JUDr. Barbora Čavojská
+reference_numbers:32P/236/2020

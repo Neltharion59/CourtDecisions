@@ -1,0 +1,5 @@
+courts:Okresný súd Trnava
+dates:08. 10. 2020
+identification_numbers:2120011959
+judges:JUDr. Michal Eliaš
+reference_numbers:3T/72/2020

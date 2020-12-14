@@ -1,0 +1,5 @@
+courts:Okresný súd Kežmarok
+dates:06. 10. 2020
+identification_numbers:8420201459
+judges:JUDr. Zuzana Salajová
+reference_numbers:5P/97/2020

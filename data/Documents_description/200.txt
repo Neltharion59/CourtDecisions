@@ -1,0 +1,5 @@
+courts:Okresný súd Rimavská Sobota
+dates:30. 09. 2020
+identification_numbers:6920010455
+judges:Mgr. Ivan Antal
+reference_numbers:11PP/4/2020

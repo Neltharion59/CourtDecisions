@@ -1,0 +1,5 @@
+courts:Okresný súd Michalovce
+dates:06. 10. 2020
+identification_numbers:0020010590
+judges:JUDr. Daniel Petričko, PhD.
+reference_numbers:0T/203/2020

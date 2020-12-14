@@ -1,0 +1,5 @@
+courts:Okresný súd Prešov
+dates:02. 10. 2020
+identification_numbers:8120010041
+judges:Mgr. Boris Vittek
+reference_numbers:1T/2/2020

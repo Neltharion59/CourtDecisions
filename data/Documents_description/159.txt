@@ -1,0 +1,5 @@
+courts:Okresný súd Rimavská Sobota
+dates:01. 10. 2020
+identification_numbers:6920010515
+judges:JUDr. Peter Zachar
+reference_numbers:0T/94/2020

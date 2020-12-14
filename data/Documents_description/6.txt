@@ -1,0 +1,5 @@
+courts:Okresný súd Košice I
+dates:09. 10. 2020
+identification_numbers:7120011469
+judges:JUDr. Martin Baločko
+reference_numbers:6T/42/2020

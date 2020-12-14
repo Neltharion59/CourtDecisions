@@ -1,0 +1,5 @@
+courts:Okresný súd Nitra
+dates:01. 10. 2020
+identification_numbers:4120010973
+judges:Mgr. Alexandra Osadská
+reference_numbers:5PP/43/2020

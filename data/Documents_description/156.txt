@@ -1,0 +1,5 @@
+courts:Okresný súd Trnava
+dates:01. 10. 2020
+identification_numbers:2120206649
+judges:JUDr. Zuzana Pribulová
+reference_numbers:11P/47/2020

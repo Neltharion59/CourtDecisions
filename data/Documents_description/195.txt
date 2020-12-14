@@ -1,0 +1,5 @@
+courts:Okresný súd Topoľčany
+dates:30. 09. 2020
+identification_numbers:4620010277
+judges:JUDr. Renáta Mihalíková
+reference_numbers:2T/54/2020

@@ -1,0 +1,5 @@
+courts:Okresný súd Kežmarok
+dates:07. 10. 2020
+identification_numbers:8420010489
+judges:JUDr. Lucia Bašistová
+reference_numbers:7T/107/2020

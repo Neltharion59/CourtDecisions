@@ -1,0 +1,5 @@
+courts:Okresný súd Komárno
+dates:30. 09. 2020
+identification_numbers:4220010442
+judges:Mgr. Ľudovít Majerčík
+reference_numbers:0T/74/2020

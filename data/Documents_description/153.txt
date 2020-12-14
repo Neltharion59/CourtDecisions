@@ -1,0 +1,5 @@
+courts:Okresný súd Zvolen
+dates:01. 10. 2020
+identification_numbers:6720010602
+judges:JUDr. Martin Kollár
+reference_numbers:0T/94/2020

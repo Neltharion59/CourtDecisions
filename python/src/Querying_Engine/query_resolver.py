@@ -230,7 +230,7 @@ def evaluate_attribute_query(text):
         for line in index_file:
             tokens = line.split(':')
             if attribute_value.lower() in tokens[0].lower():
-                matching_ids = tokens[1].replace('\n', '').split(',')
+                matching_ids += tokens[1].replace('\n', '').split(',')
 
     # Let's assign relevance to each found id. With attribute queries, relevance is always 1.0 -> Full relevance
     ids_out = [{"id": document_id, "relevance": 1.0} for document_id in matching_ids]

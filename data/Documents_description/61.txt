@@ -1,0 +1,5 @@
+courts:Okresný súd Bratislava IV
+dates:04. 10. 2020
+identification_numbers:1420010300
+judges:JUDr. Ján Evin
+reference_numbers:0T/119/2020

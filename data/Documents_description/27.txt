@@ -1,0 +1,5 @@
+courts:Okresný súd Bratislava III
+dates:07. 10. 2020
+identification_numbers:1320010704
+judges:JUDr. Roman Fitt
+reference_numbers:0T/196/2020

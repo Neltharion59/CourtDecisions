@@ -1,0 +1,5 @@
+courts:Okresný súd Nitra
+dates:05. 10. 2020
+identification_numbers:4120207537
+judges:JUDr. Lucia Kuzmová
+reference_numbers:19Pc/17/2020

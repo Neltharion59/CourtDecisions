@@ -1,0 +1,5 @@
+courts:Okresný súd Nové Mesto nad Váhom
+dates:04. 10. 2020
+identification_numbers:3520010343
+judges:JUDr. Ivan Pavlovič
+reference_numbers:0T/47/2020

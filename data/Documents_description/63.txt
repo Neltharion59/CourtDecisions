@@ -1,0 +1,5 @@
+courts:Okresný súd Rožňava
+dates:06. 10. 2020
+identification_numbers:7820203287
+judges:JUDr. Antónia Svičinová
+reference_numbers:12Pc/14/2020

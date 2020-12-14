@@ -1,0 +1,5 @@
+courts:Okresný súd Galanta
+dates:04. 10. 2020
+identification_numbers:2320011228
+judges:Mgr. Stanislav Kováč
+reference_numbers:0T/236/2020

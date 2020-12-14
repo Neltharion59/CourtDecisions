@@ -1,0 +1,5 @@
+courts:Okresný súd Košice II
+dates:06. 10. 2020
+identification_numbers:7220011069
+judges:JUDr. Soňa Mihaľáková
+reference_numbers:3T/31/2020

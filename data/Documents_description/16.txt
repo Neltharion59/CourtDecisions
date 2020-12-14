@@ -1,0 +1,5 @@
+courts:Okresný súd Galanta
+dates:07. 10. 2020
+identification_numbers:2320011232
+judges:JUDr. Marianna Hosťovecká
+reference_numbers:0T/237/2020

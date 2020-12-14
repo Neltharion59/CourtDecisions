@@ -1,0 +1,5 @@
+courts:Okresný súd Žiar nad Hronom
+dates:04. 10. 2020
+identification_numbers:6420010512
+judges:JUDr. Andrej Matušovic
+reference_numbers:0T/53/2020

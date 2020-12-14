@@ -1,0 +1,5 @@
+courts:Špecializovaný trestný súd
+dates:30. 09. 2020
+identification_numbers:9520100226
+judges:JUDr. Peter Pulman
+reference_numbers:4T/33/2020
