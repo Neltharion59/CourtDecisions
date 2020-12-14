@@ -1,8 +1,16 @@
+####################################################################################################################
+# This script contains helpful algorithms for deleting files. Should not be called as stand-alone             ######
+####################################################################################################################
+
 from os import listdir, remove
 from os.path import isfile, join
+
+# Custom imports from other folders of this project
+# All paths to directories within project are held in one play, to be able to change them easily.
 from shared_info import file_pdf_directory, file_txt_directory, file_id_path, file_id_temp_path
 
 
+# Function to delete pdf document and its textual versions
 def delete_pdf_and_txt_files(ids_to_delete):
     if len(ids_to_delete) > 0:
         file_count = 1

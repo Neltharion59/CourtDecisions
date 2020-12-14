@@ -1,6 +1,13 @@
+####################################################################################################################
+# This script contains helpful algorithms for dictionary manipulation. Should not be called as stand-alone    ######
+####################################################################################################################
+
+# Custom imports from other folders of this project.
+# We'll use all sorts of helpful functions and variables.
 from Util.tokenizer import all_lowercase_chars
 
 
+# Function to group dictionary of words and their occurrences by starting letter.
 def split_dict_abc(dict_in, file_id):
     words = list(dict_in.keys())
 
@@ -18,6 +25,7 @@ def split_dict_abc(dict_in, file_id):
     return big_dict
 
 
+# Function to turn dictionary of occurences of words into convenient string form.
 def single_letter_dict_2_string(dict_in):
     string = ''
     for word in dict_in:
@@ -34,6 +42,7 @@ def single_letter_dict_2_string(dict_in):
     return string
 
 
+# Function to remove the group tag from word occurrence dict.
 def single_letter_string_2_dict(string_in):
     dict_out = {}
 
@@ -56,6 +65,7 @@ def single_letter_string_2_dict(string_in):
     return dict_out
 
 
+# Let's merge dicts (groups by letter) to single dict
 def merge_single_letter_dicts(dict_1, dict_2):
     for key in dict_2:
         if key not in dict_1:
